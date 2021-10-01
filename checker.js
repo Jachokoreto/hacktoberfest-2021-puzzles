@@ -16,6 +16,25 @@ function validAnswer(parsed) {
     var check = arr.filter((item, index) => arr.indexOf(item) != index);
     if (check.length !== 0) {return false}
   }
+  //check column
+  for (var i = 0; i < 9; i++) {
+    var arr = [];
+    for (var j = 0; j < 9; j++) {
+      arr.push(parsed[(j * 9) + i]);
+    }
+    var check = arr.filter((item, index) => arr.indexOf(item) != index);
+    if (check.length !== 0) {return false}
+  }
+  //check box
+  [0, 3, 6, 27, 30, 33, 54, 57, 60].forEach((item) => {
+    var arr = [];
+    for (var i = item; i < (item + 3); i++) {
+      arr.push(parsed[i], parsed[i + 9], parsed[i + 18]);
+    }
+    var check = arr.filter((item, index) => arr.indexOf(item) != index);
+    if (check.length !== 0) {return false}
+  })
+  return true;
 }
 
 function checkAnswer(answer) {
