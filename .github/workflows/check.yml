@@ -1,0 +1,33 @@
+name: Check answer & reset if correct
+
+on:
+  push:
+    paths-ignore:
+    - 'README.md'
+
+jobs:
+  check_answer:
+    name: Check Answer
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+      - uses: actions/checkout@v2
+      - name: Check answer
+        run: npm run check
+  reset_questions:
+    name: Reset Questions
+    needs: check_answer 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Reset
+        run: npm run reset
+      - name: Commit
+        run: |
+        git config --local user.email "echai2905@gmail.com"
+        git config --local user.name "Eason Chai"
+        git commit -am "Reset puzzle"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

@@ -4,7 +4,9 @@
   "description": "Hacktoberfest 2021 repo with puzzles. Make a PR to test your solution!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "node checker.js",
+    "reset": "node generate.js"
   },
   "repository": {
     "type": "git",

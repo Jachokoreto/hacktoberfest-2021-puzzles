@@ -8,5 +8,6 @@ This repo is targeted for Hacktoberfest participants. It has an automatic Sudoku
 
 All you need to do is modify the `solution.txt` file with the correct answer and make a pull request!
 Note: Remember to keep the format exactly the same!
+We trust you not to cheat 😉
 
 ## ❓ Puzzle

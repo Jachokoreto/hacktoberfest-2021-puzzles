@@ -9,12 +9,11 @@ function validInput(parsed) {
 function validAnswer(parsed) {
   // Check proper sudoku ans
   // Check the map match original map (so you cant just put your own map)
-
-
 }
 
 function checkAnswer(answer) {
-  const parsed = answer.replace(/([\|\-\+\ \n])+/g, "");
+  const parsed = answer.replace(/([\|\-\+\s])+/g, "");
+  console.log(parsed);
   if (!validInput(parsed)) throw Error("Invalid Input");
   if (validAnswer(parsed)) console.log("✅ Solution Passed!");
   else {
