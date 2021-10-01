@@ -6,9 +6,16 @@ function validInput(parsed) {
   return true;
 }
 
-function validAnswer(parsed) {
+function validAnswer(parsed, p_puzzle) {
   // Check proper sudoku ans
   // Check the map match original map (so you cant just put your own map)
+  for (var i = 0; i < p_puzzle.length; i++) {
+    if (!isNaN(p_puzzle[i])) {
+      if (parsed[i] !== p_puzzle[i]) {
+        return false;
+      }
+    }
+  }
 
   //check row
   for (var i = 0; i < 9; i++) {
@@ -16,6 +23,7 @@ function validAnswer(parsed) {
     var check = arr.filter((item, index) => arr.indexOf(item) != index);
     if (check.length !== 0) {return false}
   }
+
   //check column
   for (var i = 0; i < 9; i++) {
     var arr = [];
@@ -25,6 +33,7 @@ function validAnswer(parsed) {
     var check = arr.filter((item, index) => arr.indexOf(item) != index);
     if (check.length !== 0) {return false}
   }
+
   //check box
   [0, 3, 6, 27, 30, 33, 54, 57, 60].forEach((item) => {
     var arr = [];
@@ -37,11 +46,11 @@ function validAnswer(parsed) {
   return true;
 }
 
-function checkAnswer(answer) {
+function checkAnswer(answer, puzzle) {
   const parsed = answer.replace(/([\|\-\+\s])+/g, "");
-  console.log(parsed);
+  const p_puzzle = puzzle.replace(/([\|\-\+\s])+/g, "");
   if (!validInput(parsed)) throw Error("Invalid Input");
-  if (validAnswer(parsed)) console.log("✅ Solution Passed!");
+  if (validAnswer(parsed, p_puzzle)) console.log("✅ Solution Passed!");
   else {
     console.error("❌ Solution Failed!");
     throw Error("Incorrect solution");
@@ -51,7 +60,8 @@ function checkAnswer(answer) {
 function readFile() {
   try {
     const answer = fs.readFileSync("./solution.txt", "utf8");
-    checkAnswer(answer);
+    const puzzle = fs.readFileSync("./README.md", "utf8").slice(500, 750);
+    checkAnswer(answer, puzzle);
   } catch (err) {
     console.error(err);
   }

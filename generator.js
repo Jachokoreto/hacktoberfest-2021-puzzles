@@ -5,7 +5,6 @@ const fs = require("fs");
 try {
   const puzzle = sudoku.makepuzzle();
   const parsed = helpers.prettify(puzzle);
-  let data = fs.readFileSync("./README_TEMPLATE.md", "utf8");
   data += "```\n";
   data += parsed;
   data += "```\n";
