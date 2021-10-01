@@ -9,6 +9,13 @@ function validInput(parsed) {
 function validAnswer(parsed) {
   // Check proper sudoku ans
   // Check the map match original map (so you cant just put your own map)
+
+  //check row
+  for (var i = 0; i < 9; i++) {
+    var arr = [...parsed.substring(i * 9, (i * 9) + 9)];
+    var check = arr.filter((item, index) => arr.indexOf(item) != index);
+    if (check.length !== 0) {return false}
+  }
 }
 
 function checkAnswer(answer) {
