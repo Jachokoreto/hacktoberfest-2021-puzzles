@@ -9,6 +9,8 @@ function validInput(parsed) {
 function validAnswer(parsed) {
   // Check proper sudoku ans
   // Check the map match original map (so you cant just put your own map)
+
+
 }
 
 function checkAnswer(answer) {
